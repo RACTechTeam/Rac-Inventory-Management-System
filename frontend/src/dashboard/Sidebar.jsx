@@ -33,7 +33,7 @@ const MySidebar = () => {
   };
 
   return (
-    <div style={{ display: 'flex', height: '100vh', position:'relative', boxShadow: '0px 2px 5px rgba(0, 0, 1, 0.3)',borderTopLeftRadius: 0,borderTopRightRadius: 0 }}>
+    <div style={{ display: 'flex', height: '100%', position:'relative', boxShadow: '0px 2px 5px rgba(0, 0, 1, 0.3)',borderTopLeftRadius: 0,borderTopRightRadius: 0 }}>
       <Sidebar style={{ overflowY: 'auto' }}>
       
       <Sidebar.Items>
