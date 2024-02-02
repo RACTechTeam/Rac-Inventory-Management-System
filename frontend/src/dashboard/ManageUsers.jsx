@@ -206,7 +206,7 @@ const ManageUsers = () => {
           </div>
         )}
 
-        <div className="font-poppins text-[#000000] overflow-x-auto">
+          <div className="font-poppins text-[#000000] overflow-x-auto">
           <table className="font-poppins text-[#000000] min-w-full border rounded">
             <thead>
               <tr className="font-poppins text-[#000000] bg-gray-200">

@@ -5,6 +5,7 @@ import axios from 'axios';
 
 const GetAllItems = () => {
     const [companyData, setCompanyData] = useState([]);
+  
     let i=1;
     
     useEffect(()=>{
