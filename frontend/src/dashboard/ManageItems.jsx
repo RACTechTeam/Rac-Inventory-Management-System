@@ -8,7 +8,6 @@ const ManageItems = () => {
   const [companyInfo, setCompanyInfo] = useState(null);
   const [filteredProducts, setFilteredProducts] = useState([]);
 
-
   const handleSearch = async () => {
     try {
       // Check if refNumber is not empty
