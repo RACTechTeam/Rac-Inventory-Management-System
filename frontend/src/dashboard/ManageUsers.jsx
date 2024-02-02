@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { FaEdit, FaEye, FaTrash, FaEyeSlash } from 'react-icons/fa';
+import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
 
 const ManageUsers = () => {
   const [users, setUsers] = useState([]);
@@ -128,7 +130,6 @@ const ManageUsers = () => {
 >
   Add User
 </button>
-
 
         {isFormVisible && (
           <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50">

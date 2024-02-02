@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Sidebar } from 'flowbite-react';
-import {  HiChartPie, HiInbox,  HiOutlineCloudUpload, HiUser, HiLogout} from 'react-icons/hi';
+import {  HiChartPie, HiInbox,  HiOutlineCloudUpload, HiUser, HiLogout, HiShoppingBag} from 'react-icons/hi';
 import { FaList, FaPlus, FaUserFriends} from 'react-icons/fa';
 import {useLocation,useNavigate} from 'react-router-dom'; 
 
@@ -59,10 +59,13 @@ const MySidebar = () => {
           <Sidebar.Item href="/dashboard/manage" icon={HiInbox} className='font-poppins p-3' style={{ color: activeRoute === '/dashboard/manage' ? 'blue' : 'black', fontWeight: activeRoute === '/dashboard/manage' ? 'bold' : 'normal' }}>
             Manage items
           </Sidebar.Item>
-          <Sidebar.Item href="/dashboard/manageusers" icon={HiUser} className='font-poppins p-3' style={{ color: activeRoute === '/dashboard/manageusers' ? 'blue' : 'black', fontWeight: activeRoute === '/dashboard/manageusers' ? 'bold' : 'normal' }}>
-            Manage Users
-          </Sidebar.Item>
-    
+
+          <Sidebar.Collapse icon={HiUser} label=" Manage Users" className='font-poppins p-2 ml-1'>
+            <Sidebar.Item href="/dashboard/manageusers" className='font-poppins p-2' style={{ color: activeRoute === '/dashboard/manageusers' ? 'blue' : 'black', fontWeight: activeRoute === '/dashboard/manageusers' ? 'bold' : 'normal' }}>ALL Users</Sidebar.Item>
+            <Sidebar.Item href="/dashboard/userrequest" className='font-poppins p-2' style={{ color: activeRoute === '/dashboard/userrequest' ? 'blue' : 'black', fontWeight: activeRoute === '/dashboard/userrequest' ? 'bold' : 'normal' }}>ALL Users</Sidebar.Item>
+            <Sidebar.Item href="#">Rejected Users</Sidebar.Item>
+          </Sidebar.Collapse>
+          
           <Sidebar.Item
               onClick={handleLogout} // Add onClick event for the logout button
               icon={HiLogout}

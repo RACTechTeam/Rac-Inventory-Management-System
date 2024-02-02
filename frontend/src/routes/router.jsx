@@ -15,6 +15,7 @@ import ManageUsers from "../dashboard/ManageUsers";
 import GetAllItems from "../dashboard/GetAllItems";
 import AddSupplier from "../dashboard/AddSupplier";
 import AllSupplier from "../dashboard/AllSupplier";
+import UserRequest from "../dashboard/Userrequest";
 
   const router = createBrowserRouter([
     {
@@ -76,6 +77,11 @@ import AllSupplier from "../dashboard/AllSupplier";
         {
           path:'/dashboard/allsupplier',
           element:<AllSupplier/>
+        },
+
+        {
+          path:'/dashboard/userrequest',
+          element:<UserRequest/>
         }
       ]
     }

@@ -195,11 +195,11 @@ exports.getUserDetails = catchAsyncErrors(async (req, res, next) => {
 Get user Requests 
 **************/
 exports.getUserRequests = catchAsyncErrors(async (req, res, next) => {
-  const users = await User.find({ status: "pending" });
+  const user = await User.find({ status: "pending" });
 
   res.status(200).json({
     success: true,
-    users,
+    user,
   });
 });
 
