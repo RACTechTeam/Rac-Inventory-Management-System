@@ -15,7 +15,7 @@ import ManageUsers from "../dashboard/ManageUsers";
 import GetAllItems from "../dashboard/GetAllItems";
 import AddSupplier from "../dashboard/AddSupplier";
 import AllSupplier from "../dashboard/AllSupplier";
-
+import UserRequest from "../dashboard/Userrequest";
 
   const router = createBrowserRouter([
     {
@@ -44,7 +44,7 @@ import AllSupplier from "../dashboard/AllSupplier";
       children:[
         {
           path:"/dashboard",
-          element:<DashBoard/>
+          element:<Dashboard/>
         },
         {
           path:"/dashboard/upload",
