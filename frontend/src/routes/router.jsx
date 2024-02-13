@@ -16,6 +16,7 @@ import GetAllItems from "../dashboard/GetAllItems";
 import AddSupplier from "../dashboard/AddSupplier";
 import AllSupplier from "../dashboard/AllSupplier";
 import UserRequest from "../dashboard/Userrequest";
+import Signup from "../Components/Signup"
 
   const router = createBrowserRouter([
     {
@@ -25,6 +26,11 @@ import UserRequest from "../dashboard/Userrequest";
         {
             path:'/',
             element:<Login />
+        },
+
+        {
+          path:'/signup',
+          element:<Signup/>
         },
         
         {

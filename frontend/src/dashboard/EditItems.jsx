@@ -58,9 +58,9 @@ const EditItems = () => {
 
   return (
     <div>
-       <div className="card-body mt-2 pb-5 overflow-y-hidden">
+       <div className="card-body mt-2 pb-5 overflow-x-hidden">
         <div className="row" >
-          <div className="col-lg-8 mx-auto mt-5 p-5 "  style={{ backgroundColor: 'white', boxShadow: '0 4px 8px rgba(0, 0, 1, 0.1)' }} >
+          <div className="col-lg-10 mx-auto mt-5 p-5 "  style={{ backgroundColor: 'white', boxShadow: '0 4px 8px rgba(0, 0, 1, 0.1)' }} >
 
           <div className="flex flex-col items-center mb-2 ">
   <h5 className="mb-4 text-center">Update The Item</h5>

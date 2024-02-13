@@ -50,10 +50,10 @@ const AddSupplier = () => {
   };
 
   return (
-    <div className="font-poppins card-body mt-2 pb-5 overflow-y-hidden">
+    <div className="font-poppins card-body mt-2 pb-5 overflow-x-hidden">
     <div className="font-poppins row">
       <div
-        className="font-poppins col-lg-8 mx-auto mt-5 p-5 "
+        className="font-poppins col-lg-10 mx-auto mt-5 p-5 "
         style={{ backgroundColor: 'white', boxShadow: '0 4px 8px rgba(0, 0, 1, 0.1)' }}
       >
         <div className="font-poppins flex flex-col items-center mb-2 ">

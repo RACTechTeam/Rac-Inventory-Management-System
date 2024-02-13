@@ -29,7 +29,7 @@ exports.registerUser = catchAsyncErrors(async(req,res,next)=>{
         return next(new ErrorHander("Email been already used try with different email or login",400));
     }
     
-    // Creting A user 
+    // Creating A user 
     const user = await User.create({
         userName,
         userEmail,

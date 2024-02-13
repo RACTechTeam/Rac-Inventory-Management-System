@@ -33,7 +33,7 @@ const MySidebar = () => {
   };
 
   return (
-    <div style={{ display: 'flex', height: '100vh', position:'relative', boxShadow: '0px 2px 5px rgba(0, 0, 1, 0.3)',borderTopLeftRadius: 0,borderTopRightRadius: 0 }}>
+    <div style={{ display: 'flex', height: '100%', position:'relative', boxShadow: '0px 2px 5px rgba(0, 0, 1, 0.3)',borderTopLeftRadius: 0,borderTopRightRadius: 0 }}>
       <Sidebar style={{ overflowY: 'auto' }}>
       
       <Sidebar.Items>
@@ -59,12 +59,6 @@ const MySidebar = () => {
           <Sidebar.Item href="/dashboard/manage" icon={HiInbox} className='font-poppins p-3' style={{ color: activeRoute === '/dashboard/manage' ? 'blue' : 'black', fontWeight: activeRoute === '/dashboard/manage' ? 'bold' : 'normal' }}>
             Manage items
           </Sidebar.Item>
-
-          <Sidebar.Collapse icon={HiUser} label=" Manage Users" className='font-poppins p-2 ml-1'>
-            <Sidebar.Item href="/dashboard/manageusers" className='font-poppins p-2' style={{ color: activeRoute === '/dashboard/manageusers' ? 'blue' : 'black', fontWeight: activeRoute === '/dashboard/manageusers' ? 'bold' : 'normal' }}>ALL Users</Sidebar.Item>
-            <Sidebar.Item href="/dashboard/userrequest" className='font-poppins p-2' style={{ color: activeRoute === '/dashboard/userrequest' ? 'blue' : 'black', fontWeight: activeRoute === '/dashboard/userrequest' ? 'bold' : 'normal' }}>ALL Users</Sidebar.Item>
-            <Sidebar.Item href="#">Rejected Users</Sidebar.Item>
-          </Sidebar.Collapse>
           
           <Sidebar.Item
               onClick={handleLogout} // Add onClick event for the logout button

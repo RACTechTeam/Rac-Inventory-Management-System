@@ -12,7 +12,7 @@ const Navbar = () => {
     <header className="bg-white shadow">
       
         <div className="p-3 ml-10 flex justify-between items-center">
-        <h2 className='text-blue-500 font-semibold text-xxl flex items-center justify-center'>RAC</h2>
+        <h2 className='text-blue-500 font-semibold text-xxl flex items-center justify-center' style={{color:'#696CFF'}}>IMS</h2>
 
           <div className="flex items-center ">
             

@@ -1,5 +1,5 @@
 const express = require('express');
-const { createCompany, getCompanyDetails, getAllCompanies } = require('../controllers/companyController');
+const { createCompany, getCompanyDetails, getAllCompanies, deleteCompany } = require('../controllers/companyController');
 
 const router = express.Router();
 
@@ -11,5 +11,8 @@ router.route("/company/all").get(getAllCompanies);
 
 //get a single company
 router.route("/company/:refNumber").get(getCompanyDetails);
+
+//delete company
+router.route("/company/:refNumber").delete(deleteCompany);
 
 module.exports = router;

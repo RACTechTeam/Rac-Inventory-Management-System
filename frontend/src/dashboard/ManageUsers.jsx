@@ -122,7 +122,7 @@ const ManageUsers = () => {
   };
 
   return (
-    <div className='flex flex-col mt-2 p-2 mt-3 mb-1 w-full' style={{backgroundColor:'white', boxShadow:'0 4px 8px rgba(0, 0, 1, 0.1)'}}>
+    <div className='flex flex-col mt-2 p-2 mt-3 mb-1 w-full' style={{backgroundColor:'white', boxShadow:'0 4px 8px rgba(0, 0, 1, 0.1)', height:'100%'}}>
       <div className="font-poppins text-[#000000] space-y-4 container mx-auto my-8">
       <button
   onClick={handleButtonClick}

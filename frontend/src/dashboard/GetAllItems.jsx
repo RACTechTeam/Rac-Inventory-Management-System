@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { FaCross, FaEdit, FaTrash } from 'react-icons/fa';
-
+import {FaDownload, FaEdit, FaTrash } from 'react-icons/fa';
+import ExcelJS from 'exceljs';
+import './Createitem.css'
 
 const GetAllItems = () => {
   const [data, setMyData] = useState([]);
+  const [refNumber, setRefNumber] = useState('');
   const [isFormVisible, setFormVisible] = useState(false);
   const [selectedItemRefNumber, setSelectedItemRefNumber] = useState(null);
 
@@ -42,11 +44,123 @@ const GetAllItems = () => {
     setFormVisible(false);
   }
 
+  const handleSearch = async () => {
+    try {
+      // Check if refNumber is not empty
+      if (refNumber.trim() === '') {
+        console.log('Please enter a reference number.');
+        return;
+      }
+
+      // Fetch item information
+      const itemResponse = await axios.get(`http://localhost:4000/rac/product/${refNumber}`);
+      setItemInfo(itemResponse.data.product);
+
+      // Fetch company details
+      const companyResponse = await axios.get(`http://localhost:4000/rac/company/${refNumber}`);
+      console.log('Company Details:', companyResponse.data.company);
+
+      const companyData = companyResponse.data.company;
+
+      if(companyData){
+        setCompanyInfo(companyResponse.data.company);
+      }
+      else{
+        setCompanyInfo(null);
+      }
+
+      
+    } catch (err) {
+      console.error('Error fetching information:', err);
+
+      if (err.response) {
+        // Accessing the error response from the server
+        const errorResponse = err.response.data;
+  
+        console.error(`Server error response:`, errorResponse);
+        alert(`Error: ${errorResponse.message}`);
+        
+      } else {
+        console.error(`Error during item insertion`, err);
+        alert(`Error`);
+      }
+    }
+  };
+
+  const handleEnterKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      handleSearch();
+    }
+  };
+
+  const handleDownloadExcel = async()=>{
+    const workbook = new ExcelJS.Workbook();
+    const worksheet = workbook.addWorksheet('Items');
+
+    //add header
+    const headerRow = worksheet.addRow([
+      'Ref. Number',
+      'Name',
+      'Description',
+      'Price',
+      'Category',
+      'Entry Month',
+      'Entry Date',
+      'Expiry Date',
+      'Total Stock',
+      'Total Price'
+    ]);
+
+    //Add data rows
+    data.forEach((item)=>{
+      worksheet.addRow([
+        item.refNumber,
+        item.productName,
+        item.productDescription,
+        `Rs ${item.productPrice}`,
+        item.productCategory,
+        item.month,
+        item.productEntryDate,
+        item.productExpiryDate,
+        item.numOfProducts,
+        parseFloat(item.totalPrice.$numberDecimal)
+      ]);
+    });
+
+    //generate excel file
+    const buffer = await workbook.xlsx.writeBuffer();
+    const blob = new Blob([buffer], {type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'});
+    const url = window.URL.createObjectURL(blob);
+
+    //create a link elements to trigger the download
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'ProductInvoice.xlsx';
+    a.click();
+
+    window.URL.revokeObjectURL(url);
+  }
+
+
   return (
 
     <>
-      <div className='flex flex-col mt-2 p-5 mt-3 mb-1 w-full' style={{backgroundColor:'white', boxShadow:'0 4px 8px rgba(0, 0, 1, 0.1)'}}>
+      <div className='flex flex-col mt-2 p-5 mt-3 mb-1 w-full' style={{backgroundColor:'white', boxShadow:'0 4px 8px rgba(0, 0, 1, 0.1)', height:'100vh'}}>
+      <div>
+      <h3 className='font-poppins text-[#000000] font-bold' style={{fontSize:'2rem', paddingBottom:'24px'}}>Inventory</h3>
+        </div>
+      <div className='flex justify-end mb-4'>
 
+
+<div className='flex justify-end mb-4'>
+        <button
+          className="flex bg-blue-500 hover:bg-blue-700 font-poppins text-white font-bold py-3 px-3 border border-blue-700 rounded"
+          onClick={handleDownloadExcel}
+        >
+          <FaDownload className='mr-2 mt-1' /> Download Excel
+        </button>
+      </div>
+      </div>
 
         <table>
           <thead>

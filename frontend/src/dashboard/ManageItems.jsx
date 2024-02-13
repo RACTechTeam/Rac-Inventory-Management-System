@@ -6,8 +6,6 @@ const ManageItems = () => {
   const [refNumber, setRefNumber] = useState('');
   const [itemInfo, setItemInfo] = useState(null);
   const [companyInfo, setCompanyInfo] = useState(null);
-  const [filteredProducts, setFilteredProducts] = useState([]);
-
 
   const handleSearch = async () => {
     try {
@@ -76,7 +74,7 @@ const ManageItems = () => {
 
 
   return (
-    <div className='flex flex-col text-center pt-4 mt-2 pr-5 mt-3 mb-1 w-full pr-3' style={{ backgroundColor: 'white', boxShadow: '0 4px 8px rgba(0, 0, 1, 0.1)' }}>
+    <div className='flex flex-col text-center pt-4 mt-2 pr-5 mt-3 mb-1 w-full pr-2 overflow-x-hidden ' style={{ backgroundColor: 'white', boxShadow: '0 4px 8px rgba(0, 0, 1, 0.1)', height:'100vh' }}>
       <div>
         <div>
           <h4 className='font-poppins font-bold text-black'>Enter the Reference Number of the item you want to edit</h4>
