@@ -44,7 +44,7 @@ const UserRequest = () => {
   let i = 1;
 
   return (
-    <div className='flex flex-col mt-2 p-2 mt-3 mb-1 w-full' style={{ backgroundColor: 'white', boxShadow: '0 4px 8px rgba(0, 0, 1, 0.1)', height:'100%' }}>
+    <div className='flex flex-col mt-2 p-2 mt-3 mb-1 w-full' style={{ backgroundColor: 'white', boxShadow: '0 4px 8px rgba(0, 0, 1, 0.1)' }}>
       <div className="font-poppins text-[#000000] space-y-4 container mx-auto my-8">
         <div className="font-poppins text-[#000000] overflow-x-auto">
         <table className="font-poppins text-[#000000] min-w-full border rounded">
@@ -70,12 +70,12 @@ const UserRequest = () => {
                 onClick={() => handleAccept(user._id)}
                 className={`text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline`}
               >
-                <MdFileDownloadDone className={`text-xl text-green-500`}/>
+                <MdFileDownloadDone className={`text-lg text-green-500`}/>
               </button>
             </td>
             <td className="font-poppins text-[#000000] border p-2">
               <button onClick={() => handleReject(user._id)}>
-              <TbUserCancel className={`text-xl text-red-500`}/>
+              <TbUserCancel className={`text-lg text-red-500`}/>
               </button>
             </td>
           </tr>

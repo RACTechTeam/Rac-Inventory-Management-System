@@ -76,9 +76,9 @@ const CreateItem = () => {
 
 
   return (
-    <div className="card-body mt-2 pb-5 overflow-x-hidden">
+    <div className="card-body mt-2 pb-5 overflow-y-hidden">
         <div className="row" >
-          <div className="col-lg-10 mx-auto mt-5 p-5 "  style={{ backgroundColor: 'white', boxShadow: '0 4px 8px rgba(0, 0, 1, 0.1)' }} >
+          <div className="col-lg-8 mx-auto mt-5 p-5 "  style={{ backgroundColor: 'white', boxShadow: '0 4px 8px rgba(0, 0, 1, 0.1)' }} >
 
           <div className="flex flex-col items-center mb-2 ">
   <h5 className="mb-4 text-center" style={{color:'black', fontSize:'2rem'}}>Insert new Item</h5>
@@ -86,32 +86,32 @@ const CreateItem = () => {
     <form onSubmit={handleInsertItems}>
             <div className="mt-4 row g-3">
               <div className="col-md-6">
-                <label className="label-style font-poppins" htmlFor="refNumber">Product Reference Number <span className='text-red-500'>*</span></label>
+                <label className="label-style font-poppins" htmlFor="refNumber">Product Reference Number</label>
                 <input type="text" id="refNumber" name="refNumber" className="form-control" autoComplete='off' placeholder=""/>
               </div>
               <div className="col-md-6">
-                <label className="label-style font-poppins" htmlFor="productName">Product Name <span className='text-red-500'>*</span></label>
+                <label className="label-style font-poppins" htmlFor="productName">Product Name</label>
                 <div className="input-group input-group-merge">
                   <input className="form-control" type="text" id="productName" autoComplete='off' name="productName"/>
                 </div>
               </div>
 
-              <div className="col-md-6">
-                <label className="label-style font-poppins" htmlFor="productDescription">Product Decription <span className='text-red-500'>*</span></label>
+              <div className="col-12">
+                <label className="label-style font-poppins" htmlFor="productDescription">Product Decription</label>
                 <textarea name="productDescription" className="form-control" id="productDescription" autoComplete='off' rows="2" placeholder=""></textarea>
               </div>
               <div className="col-md-6">
-                <label className="label-style font-poppins" htmlFor="productPrice">Product Price <span className='text-red-500'>*</span></label>
+                <label className="label-style font-poppins" htmlFor="productPrice">Product Price</label>
                 <input type="text" id="productPrice" name="productPrice" autoComplete='off' className="form-control phone-mask"/>
               </div>
 
               <div className="col-md-6">
-                <label className="label-style font-poppins" htmlFor="productCategory">Product Category <span className='text-red-500'>*</span></label>
+                <label className="label-style font-poppins" htmlFor="productCategory">Product Category</label>
                 <input type="text" id="productCategory" name="productCategory" autoComplete='off' className="form-control phone-mask"/>
               </div>
 
               <div className="col-md">
-                <label className="label-style font-poppins" htmlFor="month" id='month' name="month">Entry Month <span className='text-red-500'>*</span></label>
+                <label className="label-style font-poppins" htmlFor="month" id='month' name="month">Entry Month</label>
                 <div className="position-relative"><select onChange={handleMonthChange} id="month" className="select2 form-select select2-hidden-accessible" data-allow-clear="true" data-select2-id="month" tabIndex="-1" aria-hidden="true">
                   <option value="" data-select2-id="2">Select</option>
                   <option value="01">January</option>
@@ -131,18 +131,18 @@ const CreateItem = () => {
               </div>
 
               <div className="col-md-6">
-                <label className="label-style font-poppins" htmlFor="productEntryDate">Product Entry Date <span className='text-red-500'>*</span></label>
+                <label className="label-style font-poppins" htmlFor="productEntryDate">Product Entry Date</label>
                 <input type="text" id="productEntryDate" name="productEntryDate" autoComplete='off' className="form-control phone-mask" placeholder=""/>
               </div>
 
               <div className="col-md-6">
-                <label className="label-style font-poppins" htmlFor="productExpiryDate">Product Expiry Date <span className='text-red-500'>*</span></label>
+                <label className="label-style font-poppins" htmlFor="productExpiryDate">Product Expiry Date</label>
                 <input type="text" id="productExpiryDate" name="productExpiryDate" autoComplete='off' className="form-control phone-mask" placeholder=""/>
               </div>
 
 
               <div className="col-md-6">
-                <label className="label-style font-poppins" htmlFor="numOfProducts">Number of Products <span className='text-red-500'>*</span></label>
+                <label className="label-style font-poppins" htmlFor="numOfProducts">Number of Products</label>
                 <input type="text" id="numOfProducts" name="numOfProducts" autoComplete='off' className="form-control phone-mask" placeholder=""/>
               </div>
               

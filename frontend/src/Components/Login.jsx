@@ -1,100 +1,98 @@
-import React from "react";
-import { TEInput, TERipple } from "tw-elements-react";
-import {Link} from 'react-router-dom'
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
-export default function ExampleV3() {
-  return (
-    <section className="h-screen">
-      <div className="container h-full px-6 py-24">
-        <div className="g-6 flex h-full flex-wrap items-center justify-center lg:justify-between">
-          {/* <!-- Left column container with background--> */}
-          <div className="mb-12 md:mb-0 md:w-8/12 lg:w-6/12">
-            <img
-              src="https://tecdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
-              className="w-full"
-              alt="Phone image"
-            />
-          </div>
+const Login = () => {
+    const [userEmail, setEmail] = useState('');
+    const [userPassword, setPassword] = useState('');
+    const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
 
-          {/* <!-- Right column container with form --> */}
-          <div className="md:w-8/12 lg:ml-6 lg:w-5/12">
-            <form>
-              {/* <!-- Email input --> */}
-              <TEInput
-                type="email"
-                label="Email address"
-                size="lg"
-                className="mb-6"
-              ></TEInput>
+    const handleSignUp = async (event) => {
+        event.preventDefault();
+        setLoading(true);
 
-              {/* <!--Password input--> */}
-              <TEInput
-                type="password"
-                label="Password"
-                className="mb-6"
-                size="lg"
-              ></TEInput>
+        try {
+            // Make a POST request to your server with user credentials
+            const response = await axios.post('http://localhost:4000/rac/user/login', {
+                userEmail,
+                userPassword,
+            });
 
-              {/* <!-- Remember me checkbox --> */}
-              <div className="mb-6 flex items-center justify-between">
-                <div className="mb-[0.125rem] block min-h-[1.5rem] pl-[1.5rem]">
-                  <input
-                    className="relative float-left -ml-[1.5rem] mr-[6px] mt-[0.15rem] h-[1.125rem] w-[1.125rem] appearance-none rounded-[0.25rem] border-[0.125rem] border-solid border-neutral-300 outline-none before:pointer-events-none before:absolute before:h-[0.875rem] before:w-[0.875rem] before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] checked:border-primary checked:bg-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:-mt-px checked:after:ml-[0.25rem] checked:after:block checked:after:h-[0.8125rem] checked:after:w-[0.375rem] checked:after:rotate-45 checked:after:border-[0.125rem] checked:after:border-l-0 checked:after:border-t-0 checked:after:border-solid checked:after:border-white checked:after:bg-transparent checked:after:content-[''] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:shadow-none focus:transition-[border-color_0.2s] focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] focus:after:absolute focus:after:z-[1] focus:after:block focus:after:h-[0.875rem] focus:after:w-[0.875rem] focus:after:rounded-[0.125rem] focus:after:content-[''] checked:focus:before:scale-100 checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:after:-mt-px checked:focus:after:ml-[0.25rem] checked:focus:after:h-[0.8125rem] checked:focus:after:w-[0.375rem] checked:focus:after:rotate-45 checked:focus:after:rounded-none checked:focus:after:border-[0.125rem] checked:focus:after:border-l-0 checked:focus:after:border-t-0 checked:focus:after:border-solid checked:focus:after:border-white checked:focus:after:bg-transparent dark:border-neutral-600 dark:checked:border-primary dark:checked:bg-primary dark:focus:before:shadow-[0px_0px_0px_13px_rgba(255,255,255,0.4)] dark:checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca]"
-                    type="checkbox"
-                    value=""
-                    id="exampleCheck3"
-                    defaultChecked
-                  />
-                  <label
-                    className="inline-block pl-[0.15rem] hover:cursor-pointer"
-                    htmlFor="exampleCheck3"
-                  >
-                    Remember me
-                  </label>
+            // Assuming the response has a property named 'message' indicating success or failure
+            if (response.data.success === true) {
+                // If login is successful, navigate to the dashboard
+                navigate('/dashboard');
+                console.log('Login Successful');
+            } else {
+                alert('Invalid credentials or login failed');
+                console.log('Login unsuccessful');
+            }
+        } catch (error) {
+            console.error('Error during login:', error);
+            alert('Error during login. Please try again.');
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    return (
+        <div className="font-poppins min-h-screen bg-gray-100 py-6 flex flex-col sm:py-12 ml-auto">
+            <div className="font-poppins relative ml-auto py-3 sm:max-w-xl sm:mx-auto">
+                <div className="font-poppins absolute inset-0 bg-gradient-to-r from-blue-300 to-blue-600 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
+                <div className="font-poppins relative px-26 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20 lg:pb-11">
+                    <div className="font-poppins max-w-md mx-auto">
+                        <div>
+                            <h1 className="font-poppins text-2xl font-semibold">Login Form</h1>
+                        </div>
+                        <div className="font-poppins divide-y divide-gray-200">
+                            <form onSubmit={handleSignUp} className="font-poppins py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
+                                <div className="font-poppins relative">
+                                    <input
+                                        id="userEmail"
+                                        name="email"
+                                        type="text"
+                                        value={userEmail}
+                                        onChange={(e) => setEmail(e.target.value)}
+                                        className="font-poppins peer  h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:border-rose-600"
+                                        placeholder="Email address"
+                                    />
+                                </div>
+                                <div className="font-poppins relative">
+                                    <input
+                                        id="userPassword"
+                                        name="password"
+                                        type="password"
+                                        value={userPassword}
+                                        onChange={(e) => setPassword(e.target.value)}
+                                        className="font-poppins peer  h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:border-rose-600"
+                                        placeholder="Password"
+                                    />
+                                </div>
+
+                                <p className="font-poppins text-sm">
+                                    <Link to="/signup" className="font-poppins text-blue-700">
+                                        Forget Password
+                                    </Link>
+                                </p>
+
+                                <div className="font-poppins flex justify-center items-center h-full">
+                                    <button
+                                        type="submit"
+                                        className="font-poppins bg-blue-500 text-white rounded-md px-2 py-1"
+                                        disabled={loading}
+                                    >
+                                        {loading ? 'Logging in...' : 'Login'}
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
-
-                {/* <!-- Forgot password link --> */}
-                <a
-                  href="#!"
-                  className="text-primary transition duration-150 ease-in-out hover:text-primary-600 focus:text-primary-600 active:text-primary-700 dark:text-primary-400 dark:hover:text-primary-500 dark:focus:text-primary-500 dark:active:text-primary-600"
-                >
-                  Forgot password?
-                </a>
-              </div>
-
-              {/* <!-- Submit button --> */}
-
-              <TERipple rippleColor="light" className="w-full">
-                <button
-                  type="button"
-                  className="inline-block w-full rounded bg-primary px-7 pb-2.5 pt-3 text-sm font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
-                >
-                  Sign in
-                </button>
-              </TERipple>
-
-              {/* <!-- Divider --> */}
-              <div className="my-4 flex items-center before:mt-0.5 before:flex-1 before:border-t before:border-neutral-300 after:mt-0.5 after:flex-1 after:border-t after:border-neutral-300">
-                <p className="mx-4 mb-0 text-center font-semibold dark:text-neutral-200">
-                  OR
-                </p>
-              </div>
-
-              {/* <!-- Social login buttons --> */}
-              <TERipple rippleColor="light" className="w-full">
-                <a
-                  className="mb-3 flex w-full items-center justify-center rounded bg-primary px-7 pb-2.5 pt-3 text-center text-sm font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
-                  style={{ backgroundColor: "#3b5998" }}
-                  href="#!"
-                  role="button"
-                >
-                  <Link className="text-white" to={"/signup"}>Signup</Link>
-                </a>
-              </TERipple>
-            </form>
-          </div>
+            </div>
         </div>
-      </div>
-    </section>
-  );
-}
+    );
+};
+
+export default Login;

@@ -41,21 +41,4 @@ exports.getAllCompanies = catchAsyncErrors(async(req, res, next)=>{
         success:true,
         allCompanyDetails,
     })
-});
-
-//Delete company
-
-exports.deleteCompany = catchAsyncErrors(async(req, res, next)=>{
-    const company = await Company.findOne({refNumber:req.params.refNumber});
-
-    if(!company){
-        return next(new ErrorHandler("Product not found", 404));
-    }
-
-    await company.deleteOne();
-
-    res.status(200).json({
-        success:true,
-        message:"Company Deleted Successfully",
-    })
 })
