@@ -337,5 +337,3 @@ exports.deleteUser = catchAsyncErrors(async (req, res, next) => {
         message:"User Deleted Successfully",
     });
 });
-
-//Changes almost are done and d soon
