@@ -1,36 +1,35 @@
-import React, { useState } from "react";
+import {React, useState} from "react";
 import { TEInput, TERipple } from "tw-elements-react";
-import {Link, useNavigate} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom';
 import axios from 'axios'
 
 export default function ExampleV3() {
 
-    const [userEmail, setEmail] = useState("");
+    const [userName, setUserName] = useState("");
+    const [userEmail, setUserEmail] = useState("");
     const [userPassword, setPassword] = useState("");
     const navigate = useNavigate();
 
-    const handleLogin = async(event)=>{
-        event.preventDefault();
+    const handleSignup = async(e)=>{
+        e.preventDefault();
 
         try{
-            const response = await axios.post('http://localhost:4000/rac/user/login',{userEmail, userPassword});
+            const response = await axios.post('http://localhost:4000/rac/user/register', {userName, userEmail, userPassword});
             console.log(response.data);
 
-            if(response.data.success === true){
-              //set authentication state upon successfull login
-              localStorage.setItem('isLoggedIn', true);
+            if(response.data.success == true){
                 navigate('/dashboard');
-                console.log("Login successful");
+                console.log("Register user successfull");
             }
             else{
-                alert(response.data.message);
-                console.log(response.data.message);
+                alert('Something went wrong');
             }
-        }catch(e){
-            console.log(e);
-            alert('Error while login.Please tr again');
+
+        }catch(err){
+            console.log(err);
+            alert('Error');
         }
-    }
+    };
 
   return (
     <section className="h-screen">
@@ -47,14 +46,26 @@ export default function ExampleV3() {
 
           {/* <!-- Right column container with form --> */}
           <div className="md:w-8/12 lg:ml-6 lg:w-5/12">
-            <form onSubmit={handleLogin}>
+            <form onSubmit={handleSignup}>
+
+                {/* <!-- Name input --> */}
+              <TEInput
+                type="name"
+                label="Name"
+                size="lg"
+                value={userName}
+                onChange={(e)=>setUserName(e.target.value)}
+                className="mb-6"
+              ></TEInput>
+
+                
               {/* <!-- Email input --> */}
               <TEInput
                 type="email"
                 label="Email address"
                 size="lg"
                 value={userEmail}
-                onChange={(e)=>setEmail(e.target.value)}
+                onChange={(e)=>setUserEmail(e.target.value)}
                 className="mb-6"
               ></TEInput>
 
@@ -102,7 +113,7 @@ export default function ExampleV3() {
                   type="submit"
                   className="inline-block w-full rounded bg-primary px-7 pb-2.5 pt-3 text-sm font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
                 >
-                  Sign in
+                  Sign up
                 </button>
               </TERipple>
 
@@ -118,10 +129,11 @@ export default function ExampleV3() {
                 <a
                   className="mb-3 flex w-full items-center justify-center rounded bg-primary px-7 pb-2.5 pt-3 text-center text-sm font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
                   style={{ backgroundColor: "#3b5998" }}
-                  href="#!"
+                  href="/"
                   role="button"
                 >
-                  <Link className="text-white" to={"/signup"}>Signup</Link>
+                 
+                    <Link className="text-white" to={"/"}>Sign in </Link>
                 </a>
               </TERipple>
             </form>
